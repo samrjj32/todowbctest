@@ -1,23 +1,66 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect, useRef } from "react";
+import "./App.css";
+import Textbox from "./components/textbox/Textbox";
+import Button from "./components/button/Button";
+import { Edit, Delete, Save } from "@material-ui/icons";
+import useFetchTodoData from "./helpers/useFetchTodoData";
 
 function App() {
+  const {
+    handleChangeText,
+    handleSaveTodo,
+    handleDelete,
+    handleChangeEditTodo,
+    todo,
+    todos,
+    isEditingTodo
+    
+  } = useFetchTodoData();
+
+  
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="todoCard">
+        <div className="sectionOne">
+          <Textbox handleChangeTextBox={handleChangeText} textboxValue={todo} />
+          <Button handleSave={handleSaveTodo} />
+        </div>
+
+        <div className="sectionTwo">
+          <ul className="todoItemContainer">
+            {todos.map((item, i) => {
+              return (
+                <li className="todoItem" key={i}>
+                  <input
+                    className="editInputbox"
+                    value={item.data}
+                    onChange={(e) => handleChangeEditTodo(e, i)}
+                   
+                  />
+
+                  <span className="todoItemActions">
+                    {/* <Edit
+                      className="actionIcon"
+                      onClick={() => handleEdit(item.id)}
+                    /> */}
+                    {/* {isEditingTodo == item.id ? (
+                      <Save className="actionIcon" />
+                    ) : (
+                      ""
+                    )} */}
+                    <Delete
+                      className="actionIcon"
+                      onClick={() => handleDelete(item.id)}
+                    />
+                  </span>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+        {isEditingTodo? <span className="todoSaveLabel">saving....</span>:""}
+      </div>
     </div>
   );
 }
