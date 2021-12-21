@@ -14,10 +14,7 @@ function App() {
     todo,
     todos,
     isEditingTodo
-    
   } = useFetchTodoData();
-
-  
 
   return (
     <div className="App">
@@ -26,7 +23,6 @@ function App() {
           <Textbox handleChangeTextBox={handleChangeText} textboxValue={todo} />
           <Button handleSave={handleSaveTodo} />
         </div>
-
         <div className="sectionTwo">
           <ul className="todoItemContainer">
             {todos.map((item, i) => {
@@ -36,19 +32,8 @@ function App() {
                     className="editInputbox"
                     value={item.data}
                     onChange={(e) => handleChangeEditTodo(e, i)}
-                   
                   />
-
                   <span className="todoItemActions">
-                    {/* <Edit
-                      className="actionIcon"
-                      onClick={() => handleEdit(item.id)}
-                    /> */}
-                    {/* {isEditingTodo == item.id ? (
-                      <Save className="actionIcon" />
-                    ) : (
-                      ""
-                    )} */}
                     <Delete
                       className="actionIcon"
                       onClick={() => handleDelete(item.id)}
@@ -59,7 +44,7 @@ function App() {
             })}
           </ul>
         </div>
-        {isEditingTodo? <span className="todoSaveLabel">saving....</span>:""}
+        {isEditingTodo ? <span className="todoSaveLabel">saving....</span> : ""}
       </div>
     </div>
   );
