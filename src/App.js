@@ -14,52 +14,36 @@ function App() {
     todo,
     todos,
     isEditingTodo
-    
   } = useFetchTodoData();
-
-  
 
   return (
     <div className="App">
-      <div className="todoCard">
-        <div className="sectionOne">
-          <Textbox handleChangeTextBox={handleChangeText} textboxValue={todo} />
-          <Button handleSave={handleSaveTodo} />
-        </div>
-
-        <div className="sectionTwo">
-          <ul className="todoItemContainer">
-            {todos.map((item, i) => {
-              return (
-                <li className="todoItem" key={i}>
-                  <input
-                    className="editInputbox"
-                    value={item.data}
-                    onChange={(e) => handleChangeEditTodo(e, i)}
-                   
-                  />
-
-                  <span className="todoItemActions">
-                    {/* <Edit
-                      className="actionIcon"
-                      onClick={() => handleEdit(item.id)}
-                    /> */}
-                    {/* {isEditingTodo == item.id ? (
-                      <Save className="actionIcon" />
-                    ) : (
-                      ""
-                    )} */}
-                    <Delete
-                      className="actionIcon"
-                      onClick={() => handleDelete(item.id)}
-                    />
-                  </span>
-                </li>
-              );
-            })}
-          </ul>
-        </div>
-        {isEditingTodo? <span className="todoSaveLabel">saving....</span>:""}
+    <div className="todoCard">
+    <div className="sectionOne">
+    <Textbox handleChangeTextBox={handleChangeText} textboxValue={todo} />
+    <Button handleSave={handleSaveTodo} />
+    </div>
+    <div className="sectionTwo">
+     <ul className="todoItemContainer">
+      {todos.map((item, i) => {
+       return (
+       <li className="todoItem" key={i}>
+        <input
+        className="editInputbox"
+        value={item.data}
+         onChange={(e) => handleChangeEditTodo(e, i)}
+          />
+      <span className="todoItemActions">
+      <Delete
+      className="actionIcon"
+      onClick={() => handleDelete(item.id)}
+       />
+      </span>
+      </li>
+       )})}
+      </ul>
+      </div>
+      {isEditingTodo? <span className="todoSaveLabel">saving....</span>:""}
       </div>
     </div>
   );
