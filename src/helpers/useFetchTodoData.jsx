@@ -7,7 +7,7 @@ function useFetchTodoData() {
 
   useEffect(() => {
     let fetchLocaldata = localStorage.getItem("todolist");
-    setTodos(fetchLocaldata.length > 0 ? JSON.parse(fetchLocaldata) : []);
+    setTodos(JSON.parse(fetchLocaldata).length > 0 ? JSON.parse(fetchLocaldata) : []);
   }, []);
 
   useEffect(() => {
