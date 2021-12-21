@@ -66,3 +66,7 @@
   justify-content: center;
   color: green;
 }
+
+::-webkit-scrollbar {
+  display: none;
+}
